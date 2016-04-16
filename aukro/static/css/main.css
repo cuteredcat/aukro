@@ -26,6 +26,7 @@ a {
 
 h1, h2, h3, h4, h5 {
   font-weight: normal;
+  margin: 0;
 }
 
 h1 {
@@ -118,7 +119,7 @@ header {
 
 #content {
   clear: both;
-  padding: 10px 50px;
+  padding: 0 50px;
 }
 
   #content .rating.table tr.pos {
@@ -143,3 +144,43 @@ header {
       color: #202020;
       text-align: left;
     }
+
+  #content .load-seller-rating {
+    clear: both;
+  }
+
+    #content .load-seller-rating ul {
+      list-style-type: none;
+
+      margin: 0;
+      margin-right: 40px;
+      padding: 0;
+    }
+
+    #content .load-seller-rating li {
+      line-height: 44px;
+
+      float: left;
+      margin-right: 10px;
+    }
+
+    header .search-for-seller button {
+      background-color: #00a0e6;
+      border: 1px solid #00a0e6;
+      border-radius: 5px;
+
+      color: #ffffff;
+      line-height: 22px;
+
+      display: block;
+      padding: 10px 20px;
+    }
+
+      header .search-for-seller button:hover {
+        background-color: #ffffff;
+        color: #00a0e6;
+      }
+
+  #content .load-results {
+    clear: both;
+  }

@@ -4,7 +4,7 @@
 {% block content %}
 {% if error %}
   <h1 class="error reason">{{ error.reason }}</h1>
-  <h2 class="error details">{{ error.details }}</h2>
+  <h3 class="error details">{{ error.details }}</h3>
 {% endif %}
 {% if seller %}
   <h1 class="seller name">
@@ -14,6 +14,39 @@
   <div class="seller rating table">
     {{ seller.info|safe }}
   </div>
+  <form class="load-seller-rating" action=".">
+    <ul>
+      <li>
+        Количество результатов:
+      </li>
+      <li>
+        <input checked type="radio" name="count" value="50" />
+        <label>50</label>
+      </li>
+      <li>
+        <input type="radio" name="count" value="100" />
+        <label>100</label>
+      </li>
+      <li>
+        <input type="radio" name="count" value="200" />
+        <label>200</label>
+      </li>
+      <li>
+        <input type="radio" name="count" value="500" />
+        <label>500</label>
+      </li>
+      <li>
+        <input type="radio" name="count" value="1000" />
+        <label>1000</label>
+      </li>
+      <li>
+        <input type="radio" name="count" value="all" />
+        <label>Все</label>
+      </li>
+    </ul>
+    <button type="submit">Загрузить</button>
+  </form>
+  <table class="load-results"></table>
 {% endif %}
 {# ga.script()|safe #}
 {% endblock %}

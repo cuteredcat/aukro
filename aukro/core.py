@@ -58,7 +58,7 @@ def seller():
         if el:
             seller['rating'] = u" ".join(el[0].xpath("./text()")).strip()
 
-        el = page.cssselect(".feedbacksSummary")
+        el = page.cssselect(".feedbacksSummary table")
         if el:
             seller['info'] = tostring(el[0])
 
