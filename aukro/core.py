@@ -60,7 +60,7 @@ def seller():
 
         el = page.cssselect(".feedbacksSummary")
         if el:
-            seller['info'] = el[0].tostring()
+            seller['info'] = tostring(el[0])
 
     except:
         error = dict(reason=u"Не удалось найти информацию о продавце", details=u"Нет нужной информации на странице")
