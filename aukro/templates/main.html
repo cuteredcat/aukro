@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru-RU" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/ru.js" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" type="text/javascript"></script>
+    <title>{% block title %}Aukro{% endblock %}</title>
+  </head>
+
+  <body>
+    <header>
+      <a class="logo" href="{{ url_for('core.index') }}"><img src="{{ url_for('static', filename='images/aukro-ua-logo.png') }}"/></a>
+      <form class="search-for-seller" action="/seller/">
+        <input type="search" name="search" />
+        <button type="submit">Искать продавца</button>
+      </form>
+      {% block header %}{% endblock %}
+    </header>
+    <section id="content">
+      {% block content %}{% endblock %}
+    </section>
+    <footer>
+      <span class="copyright">© 2015 Aukro</span>,
+      {% block footer %}{% endblock %}
+    </footer>
+  </body>
+</html>

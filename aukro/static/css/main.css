@@ -1,0 +1,59 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic);
+
+body {
+  color: #202020;
+
+  font-family: Open Sans, Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  line-height: 1em;
+}
+
+a {
+  color: #00a0e6;
+}
+
+  a:hover {
+    color: #4dc9ff;
+  }
+
+header {
+  display: block;
+
+  height: 70px;
+}
+
+  header .logo {
+    float: left;
+
+    margin: 8px 20px;
+  }
+
+  header .logo img {
+    height: 54px;
+    width: 140px;
+  }
+
+  header .search-for-seller button {
+    background-color: #00a0e6;
+    border: 1px solid #00a0e6;
+    border-radius: 0 5px 5px 0;
+
+    color: #ffffff;
+
+    display: block;
+    float: right;
+    padding: 4px 20px;
+  }
+
+    header .search-for-seller button:hover {
+      background-color: #ffffff;
+      color: #00a0e6;
+    }
+
+  header .search-for-seller input {
+    border: 1px solid #00a0e6;
+    border-radius: 5px 0 0 5px;
+
+    display: block;
+    padding: 4px 20px;
+  }
