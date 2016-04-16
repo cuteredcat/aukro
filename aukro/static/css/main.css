@@ -8,6 +8,14 @@ body {
   line-height: 1em;
 }
 
+button, input, textarea {
+  font-family: Open Sans, Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  line-height: 1em;
+
+  outline: none;
+}
+
 a {
   color: #00a0e6;
 }
@@ -25,7 +33,7 @@ header {
   header .logo {
     float: left;
 
-    margin: 8px 20px;
+    margin: 8px 30px;
   }
 
   header .logo img {
@@ -33,27 +41,42 @@ header {
     width: 140px;
   }
 
-  header .search-for-seller button {
-    background-color: #00a0e6;
-    border: 1px solid #00a0e6;
-    border-radius: 0 5px 5px 0;
-
-    color: #ffffff;
-
+  header .search-for-seller {
     display: block;
-    float: right;
-    padding: 4px 20px;
+    margin: 9px 30px;
   }
 
-    header .search-for-seller button:hover {
-      background-color: #ffffff;
-      color: #00a0e6;
+    header .search-for-seller button {
+      background-color: #00a0e6;
+      border: 1px solid #00a0e6;
+      border-radius: 0 5px 5px 0;
+
+      color: #ffffff;
+
+      display: block;
+      padding: 10px 20px;
     }
 
-  header .search-for-seller input {
-    border: 1px solid #00a0e6;
-    border-radius: 5px 0 0 5px;
+      header .search-for-seller button:hover {
+        background-color: #ffffff;
+        color: #00a0e6;
+      }
 
-    display: block;
-    padding: 4px 20px;
-  }
+    header .search-for-seller input {
+      border: 1px solid #00a0e6;
+      border-radius: 5px 0 0 5px;
+
+      display: block;
+      float: left;
+      padding: 10px 20px;
+
+      width: 600px;
+    }
+
+    header .search-for-seller label {
+      color: #999999;
+      font-size: 12px;
+
+      display: block;
+      margin-top: 20px;
+    }
