@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Blueprint, jsonify, render_template, request, url_for
+from lxml.html import tostring
 
 from aukro import app, db
 from aukro.parser import Parser
@@ -29,7 +30,7 @@ def seller():
         seller['id'] = data["uid"]
     else:
         try:
-            page = parser.grab(search, tree=false)
+            page = parser.grab(search, tree=False)
         except:
             error = dict(reason=u"Не удалось найти продавца", details=u"Неправильная ссылка или нет связи с сервером")
             return render_template("seller.html", error=error)
@@ -59,7 +60,7 @@ def seller():
 
         el = page.cssselect(".feedbacksSummary")
         if el:
-            seller['info'] = el.tostring()
+            seller['info'] = el[0].tostring()
 
     except:
         error = dict(reason=u"Не удалось найти информацию о продавце", details=u"Нет нужной информации на странице")

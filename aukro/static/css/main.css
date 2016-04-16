@@ -24,6 +24,35 @@ a {
     color: #4dc9ff;
   }
 
+h1, h2, h3, h4, h5 {
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 2em;
+  line-height: 2em;
+}
+
+h2 {
+  font-size: 1.8em;
+  line-height: 1.8em;
+}
+
+h3 {
+  font-size: 1.6em;
+  line-height: 1.6em;
+}
+
+h4 {
+  font-size: 1.4em;
+  line-height: 1.4em;
+}
+
+h5 {
+  font-size: 1.2em;
+  line-height: 1.2em;
+}
+
 header {
   display: block;
 
@@ -89,5 +118,28 @@ header {
 
 #content {
   clear: both;
-  padding: 30px;
+  padding: 10px 50px;
 }
+
+  #content .rating.table tr.pos {
+    color: #009b00;
+  }
+
+  #content .rating.table tr.neg {
+    color: #ee3e2b;
+  }
+
+  #content .rating.table thead td {
+    font-size: 12px;
+  }
+
+  #content .rating.table td {
+    text-align: center;
+
+    padding: 5px 10px;
+  }
+
+    #content .rating.table td.rowName {
+      color: #202020;
+      text-align: left;
+    }

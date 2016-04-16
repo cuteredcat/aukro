@@ -11,7 +11,9 @@
     Продавец: {{ seller.name }}
     <span class="seller rating">{{ seller.rating }}</span>
   </h1>
-  {{ seller.info }}
+  <div class="seller rating table">
+    {{ seller.info|safe }}
+  </div>
 {% endif %}
 {# ga.script()|safe #}
 {% endblock %}
