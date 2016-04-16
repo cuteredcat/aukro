@@ -50,6 +50,7 @@ header {
     header .search-for-seller button {
       background-color: #00a0e6;
       border: 1px solid #00a0e6;
+      border-left: 0;
       border-radius: 0 5px 5px 0;
 
       color: #ffffff;
@@ -69,6 +70,7 @@ header {
       border-radius: 5px 0 0 5px;
 
       line-height: 22px;
+      text-overflow: ellipsis;
 
       display: block;
       float: left;
@@ -87,4 +89,5 @@ header {
 
 #content {
   clear: both;
+  padding: 30px;
 }

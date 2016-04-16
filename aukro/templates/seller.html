@@ -1,0 +1,17 @@
+{% extends "main.html" %}
+{# import "ga.macro" as ga #}
+
+{% block content %}
+{% if error %}
+  <h1 class="error reason">{{ error.reason }}</h1>
+  <h2 class="error details">{{ error.details }}</h2>
+{% endif %}
+{% if seller %}
+  <h1 class="seller name">
+    Продавец: {{ seller.name }}
+    <span class="seller rating">{{ seller.rating }}</span>
+  </h1>
+  {{ seller.info }}
+{% endif %}
+{# ga.script()|safe #}
+{% endblock %}
