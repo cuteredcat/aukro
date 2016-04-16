@@ -27,13 +27,13 @@ a {
 header {
   display: block;
 
-  height: 70px;
+  height: 90px;
 }
 
   header .logo {
     float: left;
 
-    margin: 8px 30px;
+    margin: 18px 30px;
   }
 
   header .logo img {
@@ -43,7 +43,8 @@ header {
 
   header .search-for-seller {
     display: block;
-    margin: 9px 30px;
+    margin-left: 200px;
+    padding: 14px 30px 14px 0;
   }
 
     header .search-for-seller button {
@@ -52,6 +53,7 @@ header {
       border-radius: 0 5px 5px 0;
 
       color: #ffffff;
+      line-height: 22px;
 
       display: block;
       padding: 10px 20px;
@@ -66,6 +68,8 @@ header {
       border: 1px solid #00a0e6;
       border-radius: 5px 0 0 5px;
 
+      line-height: 22px;
+
       display: block;
       float: left;
       padding: 10px 20px;
@@ -78,5 +82,9 @@ header {
       font-size: 12px;
 
       display: block;
-      margin-top: 20px;
+      margin-top: 2px;
     }
+
+#content {
+  clear: both;
+}
