@@ -68,9 +68,9 @@ def seller():
     return render_template("seller.html", seller=seller)
 
 @core.route("/ajax/item/")
-def ajax_seller_list(id, count=9999):
+def ajax_item():
     link = request.args.get("link", "")
-    result = []
+    result = {}
 
     # init parser
     parser = Parser(charset="utf-8")
@@ -83,15 +83,15 @@ def ajax_seller_list(id, count=9999):
         return jsonify(error=error)
 
     try:
-        el = page.cssselect(".product.productwide h1 [itemprop='name']")
+        el = page.cssselect("meta[itemprop='name']")
         if el:
-            result['name'] = el[0].text_content().strip()
+            result['name'] = el[0].get("content")
 
-        el = page.cssselect(".product.productwide .main meta[itemprop='price']")
+        el = page.cssselect("meta[itemprop='price']")
         if el:
             result['price'] = el[0].get("content")
 
-        el = page.cssselect(".product.productwide .main meta[itemprop='priceCurrency']")
+        el = page.cssselect("meta[itemprop='priceCurrency']")
         if el:
             result['currency'] = el[0].get("content")
 
