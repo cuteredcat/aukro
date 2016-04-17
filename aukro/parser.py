@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from datetime import datetime
-from lxml.html import fromstring, make_links_absolute
+from lxml.html import fromstring, make_links_absolute, tostring
 from urlparse import parse_qs, urlparse
 
 import cookielib, json, importlib, re, urllib, urllib2
@@ -62,3 +62,6 @@ class Parser():
             content = make_links_absolute(fromstring(content), link, resolve_base_href=True)
 
         return content
+
+    def tostring(el):
+        return tostring(el)

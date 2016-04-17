@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from flask import Blueprint, jsonify, render_template, request, url_for
-from lxml.html import tostring
 
 from aukro import app, db
 from aukro.parser import Parser
@@ -60,10 +59,48 @@ def seller():
 
         el = page.cssselect(".feedbacksSummary table")
         if el:
-            seller['info'] = tostring(el[0])
+            seller['info'] = parser.tostring(el[0])
 
     except:
         error = dict(reason=u"Не удалось найти информацию о продавце", details=u"Нет нужной информации на странице")
         return render_template("seller.html", error=error)
 
     return render_template("seller.html", seller=seller)
+
+@core.route("/ajax/seller/<int:id>/list/<int:count>/")
+def ajax_seller_list(id, count=9999):
+    result = []
+    page = 1
+
+    # init parser
+    parser = Parser(charset="utf-8")
+
+    while len(result) < count:
+        #request seller info page
+        try:
+            page = parser.grab("http://aukro.ua/show_user.php?uid=%s&type=fb_seller&p=%s" % (id, page))
+        except:
+            error = dict(reason=u"Не удалось загрузить список", details=u"Нет связи с сервером")
+            return jsonify(error=error)
+
+        try:
+            for el in page.cssselect(".feedbacks-row"):
+                rows = el.cssselect("td")
+
+                if rows and len(rows) >= 4:
+                    data = dict(datetime=u" ".join(rows[3].xpath("./text()")).strip(),
+                                type=u" ".join(rows[2].xpath("./text()")).strip(),
+                                item=u" ".join(rows[4].xpath("./text()")).strip(),
+                                link=rows[4].cssselect("a")[0].get("href"))
+
+                    result.append(data)
+
+        except:
+            pass
+
+        if page.cssselect(".pagination li.next"):
+            page += 1
+        else:
+            break
+
+    return jsonify(result=result)

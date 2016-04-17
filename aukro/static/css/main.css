@@ -146,7 +146,11 @@ header {
     }
 
   #content .load-seller-rating {
+    line-height: 44px;
+
     clear: both;
+    padding: 10px;
+    margin-top: 10px;
   }
 
     #content .load-seller-rating ul {
@@ -161,10 +165,10 @@ header {
       line-height: 44px;
 
       float: left;
-      margin-right: 10px;
+      margin-right: 20px;
     }
 
-    header .search-for-seller button {
+    #content .load-seller-rating button {
       background-color: #00a0e6;
       border: 1px solid #00a0e6;
       border-radius: 5px;
@@ -172,11 +176,11 @@ header {
       color: #ffffff;
       line-height: 22px;
 
-      display: block;
-      padding: 10px 20px;
+      display: inline-block;
+      padding: 5px 20px;
     }
 
-      header .search-for-seller button:hover {
+      #content .load-seller-rating button:hover {
         background-color: #ffffff;
         color: #00a0e6;
       }
