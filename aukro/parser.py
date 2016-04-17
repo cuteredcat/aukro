@@ -40,6 +40,9 @@ class Parser():
         else:
             return None
 
+    def html(self, el):
+        return tostring(el)
+
     def grab(self, link, tree=True):
         try:
             opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cookie))
@@ -62,6 +65,3 @@ class Parser():
             content = make_links_absolute(fromstring(content), link, resolve_base_href=True)
 
         return content
-
-    def tostring(el):
-        return tostring(el)

@@ -51,15 +51,15 @@ def seller():
     try:
         el = page.cssselect(".main-title .user .uname")
         if el:
-            seller['name'] = u" ".join(el[0].xpath("./text()")).strip()
+            seller['name'] = el[0].text_content().strip()
 
         el = page.cssselect(".main-title .user .user-rating")
         if el:
-            seller['rating'] = u" ".join(el[0].xpath("./text()")).strip()
+            seller['rating'] = el[0].text_content().strip()
 
         el = page.cssselect(".feedbacksSummary table")
         if el:
-            seller['info'] = parser.tostring(el[0])
+            seller['info'] = parser.html(el[0])
 
     except:
         error = dict(reason=u"Не удалось найти информацию о продавце", details=u"Нет нужной информации на странице")
@@ -67,10 +67,44 @@ def seller():
 
     return render_template("seller.html", seller=seller)
 
+@core.route("/ajax/item/")
+def ajax_seller_list(id, count=9999):
+    link = request.args.get("link", "")
+    result = []
+
+    # init parser
+    parser = Parser(charset="utf-8")
+
+    #request item page
+    try:
+        page = parser.grab(link)
+    except:
+        error = dict(reason=u"Не удалось найти страницу товара", details=u"Неправильная ссылка или нет связи с сервером")
+        return jsonify(error=error)
+
+    try:
+        el = page.cssselect(".product.productwide h1 [itemprop='name']")
+        if el:
+            result['name'] = el[0].text_content().strip()
+
+        el = page.cssselect(".product.productwide .main meta[itemprop='price']")
+        if el:
+            result['price'] = el[0].get("content")
+
+        el = page.cssselect(".product.productwide .main meta[itemprop='priceCurrency']")
+        if el:
+            result['currency'] = el[0].get("content")
+
+    except:
+        error = dict(reason=u"Не удалось найти информацию о товаре", details=u"Нет нужной информации на странице")
+        return jsonify(error=error)
+
+    return jsonify(result=result)
+
 @core.route("/ajax/seller/<int:id>/list/<int:count>/")
 def ajax_seller_list(id, count=9999):
+    page_number = 1
     result = []
-    page = 1
 
     # init parser
     parser = Parser(charset="utf-8")
@@ -78,7 +112,7 @@ def ajax_seller_list(id, count=9999):
     while len(result) < count:
         #request seller info page
         try:
-            page = parser.grab("http://aukro.ua/show_user.php?uid=%s&type=fb_seller&p=%s" % (id, page))
+            page = parser.grab("http://aukro.ua/show_user.php?uid=%s&type=fb_seller&p=%s" % (id, page_number))
         except:
             error = dict(reason=u"Не удалось загрузить список", details=u"Нет связи с сервером")
             return jsonify(error=error)
@@ -88,10 +122,10 @@ def ajax_seller_list(id, count=9999):
                 rows = el.cssselect("td")
 
                 if rows and len(rows) >= 4:
-                    data = dict(datetime=u" ".join(rows[3].xpath("./text()")).strip(),
-                                type=u" ".join(rows[2].xpath("./text()")).strip(),
-                                item=u" ".join(rows[4].xpath("./text()")).strip(),
-                                link=rows[4].cssselect("a")[0].get("href"))
+                    data = dict(datetime=rows[2].text_content().strip(),
+                                type=rows[1].text_content().strip(),
+                                item=rows[3].text_content().strip(),
+                                link=rows[3].cssselect("a")[0].get("href"))
 
                     result.append(data)
 
@@ -99,7 +133,7 @@ def ajax_seller_list(id, count=9999):
             pass
 
         if page.cssselect(".pagination li.next"):
-            page += 1
+            page_number += 1
         else:
             break
 
