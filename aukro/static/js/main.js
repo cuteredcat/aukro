@@ -12,7 +12,7 @@ $(document).ready(function() {
     $("form.load-seller-rating button[type='submit']").prop('disabled', true);
 
     // prevent from export to excel
-    $("form.load-seller-rating button.export").hide();
+    $("form.load-seller-rating a.export").hide();
 
     // table must be empty
     $("#items tbody tr").remove();
@@ -66,7 +66,7 @@ $(document).ready(function() {
                 $("form.load-seller-rating button[type='submit']").prop('disabled', false);
 
                 // allow from export to excel
-                $("form.load-seller-rating button.export").show();
+                $("form.load-seller-rating a.export").show();
               }, 5000);
             });
           }(item, link));
