@@ -28,6 +28,7 @@ $(document).ready(function() {
         alert(data["error"]["reason"] + "\n" + data["error"]["details"]);
       }
       else {
+        var links = [];
         for (var i = 0, len = data["result"].length; i < len; i++) {
           var current = data["result"][i],
               datetime = current["datetime"],
@@ -39,26 +40,31 @@ $(document).ready(function() {
                 '<td class="name"></td>' +
                 '<td class="price"></td>' +
                 '</tr>'
-              ).addClass('item').addClass(item).data('link', link);
+              ).addClass('item').attr('link', links.length).data('link', link);
 
           $("#items tbody").append(row);
+          links[links.length] = link;
+        }
+
+        for (var i = 0, len = links.length; i < len; i++) {
+          var link = links[i];
 
           // get item name and price
-          (function(item, link) {
+          (function(i, link) {
             $.ajax({
               url: "/ajax/item/",
               data: {link: link}
             }).done(function(data) {
               if ("error" in data) {
-                $(".item." + item + " .name").html(data["error"]["reason"] + " (" + data["error"]["details"] + ")");
+                $(".item[link='" + i + "'] .name").html(data["error"]["reason"] + " (" + data["error"]["details"] + ")");
               }
               else {
                 var name = data["result"]["name"],
                     price = data["result"]["price"],
                     currency = data["result"]["currency"];
 
-                $(".item." + item + " .name").html("<a href='" + link + "' target='_blank'>" + name + "</a>");
-                $(".item." + item + " .price").html(price + " <small>" + currency + "</small>");
+                $(".item[link='" + i + "'] .name").html("<a href='" + link + "' target='_blank'>" + name + "</a>");
+                $(".item[link='" + i + "'] .price").html(price + " <small>" + currency + "</small>");
               }
 
               clearTimeout(enableTimeout); enableTimeout = setTimeout(function() {
@@ -69,7 +75,7 @@ $(document).ready(function() {
                 $("form.load-seller-rating a.export").show();
               }, 5000);
             });
-          }(item, link));
+          }(i, link));
         }
       }
     });
