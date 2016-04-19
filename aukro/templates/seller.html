@@ -46,7 +46,7 @@
     </ul>
     <input type="hidden" name="seller_id" value="{{ seller.id }}" />
     <button type="submit">Загрузить</button>
-    <button class="export" disabled>Экспорт в Excel</button>
+    <a href="#" download="aukro-{{ seller.name }}.xls" class="button" onclick="return ExcellentExport.excel(this, 'items', 'Aukro, продавец: ' + $('h1.seller.name').data('seller'));">Экспорт в Excel</a>
   </form>
   <table id="items">
     <thead>

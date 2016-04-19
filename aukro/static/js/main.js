@@ -1,3 +1,5 @@
+var enableTimeout;
+
 $(document).ready(function() {
   $("form.load-seller-rating").on("submit", function(e) {
     // prevent sending the form to the server
@@ -10,7 +12,7 @@ $(document).ready(function() {
     $("form.load-seller-rating button[type='submit']").prop('disabled', true);
 
     // prevent from export to excel
-    $("form.load-seller-rating button.export").prop('disabled', true);
+    $("form.load-seller-rating button.export").hide();
 
     // table must be empty
     $("#items tbody tr").remove();
@@ -58,25 +60,18 @@ $(document).ready(function() {
                 $(".item." + item + " .name").html("<a href='" + link + "' target='_blank'>" + name + "</a>");
                 $(".item." + item + " .price").html(price + " <small>" + currency + "</small>");
               }
+
+              clearTimeout(enableTimeout); enableTimeout = setTimeout(function() {
+                // re-enable submit button
+                $("form.load-seller-rating button[type='submit']").prop('disabled', false);
+
+                // allow from export to excel
+                $("form.load-seller-rating button.export").show();
+              }, 5000);
             });
           }(item, link));
         }
-
-        // allow from export to excel
-        $("form.load-seller-rating button.export").prop('disabled', false);
       }
-
-      // re-enable submit button
-      $("form.load-seller-rating button[type='submit']").prop('disabled', false);
     });
-  });
-
-  $("form.load-seller-rating .export").on("click", function(e) {
-    // prevent sending the form to the server
-    e.preventDefault();
-
-    // export to excel
-    ExcellentExport.excel(this, "items", "Aukro, продавец: " + $("h1.seller.name").data("seller"));
-    if (console) { console.log("Exported to Excel!, Aukro, продавец: " + $("h1.seller.name").data("seller")); }
   });
 });

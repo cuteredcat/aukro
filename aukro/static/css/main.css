@@ -172,7 +172,8 @@ header {
       margin-right: 20px;
     }
 
-    #content .load-seller-rating button {
+    #content .load-seller-rating button,
+    #content .load-seller-rating .button {
       background-color: #00a0e6;
       border: 1px solid #00a0e6;
       border-radius: 5px;
@@ -184,7 +185,8 @@ header {
       padding: 5px 20px;
     }
 
-      #content .load-seller-rating button:hover {
+      #content .load-seller-rating button:hover,
+      #content .load-seller-rating .button:hover {
         background-color: #ffffff;
         color: #00a0e6;
       }
