@@ -76,6 +76,7 @@ $(document).ready(function() {
     e.preventDefault();
 
     // export to excel
-    return ExcellentExport.excel(this, "items", "Aukro, продавец: " + $("h1.seller.name").data("seller"));
+    ExcellentExport.excel(this, "items", "Aukro, продавец: " + $("h1.seller.name").data("seller"));
+    if (console) { console.log("Exported to Excel!, Aukro, продавец: " + $("h1.seller.name").data("seller")); }
   });
 });
