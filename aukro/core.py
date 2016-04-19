@@ -119,13 +119,12 @@ def ajax_seller_list(id, count=9999):
 
         try:
             for el in page.cssselect(".feedbacks-row"):
-                rows = el.cssselect("td")
+                cols = el.cssselect("td")
 
-                if rows and len(rows) >= 4:
-                    data = dict(datetime=rows[2].text_content().strip(),
-                                type=rows[1].text_content().strip(),
-                                item=rows[3].text_content().strip(),
-                                link=rows[3].cssselect("a")[0].get("href"))
+                if cols and len(cols) >= 4:
+                    data = dict(datetime=cols[2].text_content().strip(),
+                                item=cols[3].text_content().strip(),
+                                link=cols[3].cssselect("a")[0].get("href"))
 
                     result.append(data)
 

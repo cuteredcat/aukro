@@ -122,6 +122,10 @@ header {
   padding: 0 50px;
 }
 
+  #content h1 + h3 {
+    margin-top: -20px;
+  }
+
   #content .rating.table tr.pos {
     color: #009b00;
   }
@@ -185,6 +189,30 @@ header {
         color: #00a0e6;
       }
 
-  #content .load-results {
+      #content .load-seller-rating button:disabled {
+        background-color: #ffffff;
+        border: 1px solid #999999;
+        color: #999999;
+      }
+
+  #items {
     clear: both;
+    display: none;
+
+    width: 100%;
   }
+
+    #items thead {
+      border-bottom: 1px solid #999999;
+
+      font-size: 12px;
+      text-align: center;
+    }
+
+    #items td {
+      padding: 5px 10px;
+    }
+
+footer {
+  display: none;
+}

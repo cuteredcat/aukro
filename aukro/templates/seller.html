@@ -7,7 +7,7 @@
   <h3 class="error details">{{ error.details }}</h3>
 {% endif %}
 {% if seller %}
-  <h1 class="seller name">
+  <h1 class="seller name" data-seller="{{ seller.name }}">
     Продавец: {{ seller.name }}
     <span class="seller rating">{{ seller.rating }}</span>
   </h1>
@@ -44,9 +44,18 @@
         <label>Все</label>
       </li>
     </ul>
+    <input type="hidden" name="seller_id" value="{{ seller.id }}" />
     <button type="submit">Загрузить</button>
+    <button class="export" disabled>Экспорт в Excel</button>
   </form>
-  <table class="load-results"></table>
+  <table id="items">
+    <thead>
+      <tr>Дата покупки</tr>
+      <tr>Название товара</tr>
+      <tr>Цена</tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 {% endif %}
 {# ga.script()|safe #}
 {% endblock %}
