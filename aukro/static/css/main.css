@@ -198,8 +198,30 @@ header {
 
       #content .load-seller-rating button:disabled {
         background-color: #ffffff;
+        background-image: linear-gradient(
+          -45deg,
+          rgba(153, 153, 153, 1) 25%,
+          transparent 25%,
+          transparent 50%,
+          rgba(153, 153, 153, 1) 50%,
+          rgba(153, 153, 153, 1) 75%,
+          transparent 75%,
+          transparent
+        );
+        background-size: 50px 50px;
+        animation: wait 2s linear infinite;
+
         border: 1px solid #999999;
         color: #999999;
+      }
+
+      @keyframes wait {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 50px 50px;
+        }
       }
 
   #items {

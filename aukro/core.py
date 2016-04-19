@@ -26,7 +26,7 @@ def seller():
     # try to find seller id
     data = parser.data(search)
     if data and "uid" in data:
-        seller['id'] = data["uid"]
+        seller['id'] = data["uid"][0]
     else:
         try:
             page = parser.grab(search, tree=False)
