@@ -119,7 +119,7 @@ header {
 
 #content {
   clear: both;
-  padding: 0 50px;
+  padding: 0 50px 50px 50px;
 }
 
   #content h1 + h3 {
@@ -197,30 +197,22 @@ header {
       }
 
       #content .load-seller-rating button:disabled {
-        background-color: #ffffff;
-        background-image: linear-gradient(
-          -45deg,
-          rgba(153, 153, 153, 1) 25%,
-          transparent 25%,
-          transparent 50%,
-          rgba(153, 153, 153, 1) 50%,
-          rgba(153, 153, 153, 1) 75%,
-          transparent 75%,
-          transparent
-        );
-        background-size: 50px 50px;
         animation: wait 2s linear infinite;
+        background-color: #ffffff;
 
-        border: 1px solid #999999;
+        border: 1px solid #ffffff;
         color: #999999;
       }
 
       @keyframes wait {
         0% {
-          background-position: 0 0;
+          box-shadow: 0 0 10px rgba(0, 160, 230, 0);
+        }
+        50% {
+          box-shadow: 0 0 10px rgba(0, 160, 230, .5);
         }
         100% {
-          background-position: 50px 50px;
+          box-shadow: 0 0 10px rgba(0, 160, 230, 0);
         }
       }
 
