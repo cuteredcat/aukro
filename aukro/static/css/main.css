@@ -185,6 +185,11 @@ header {
       padding: 5px 20px;
     }
 
+      #content .load-seller-rating .button {
+        text-decoration: none;
+        display: none;
+      }
+
       #content .load-seller-rating button:hover,
       #content .load-seller-rating .button:hover {
         background-color: #ffffff;
@@ -212,8 +217,17 @@ header {
     }
 
     #items td {
+      white-space: pre;
       padding: 5px 10px;
     }
+
+      #items td.datetime {
+        width: 20%;
+      }
+
+      #items td.price {
+        width: 10%;
+      }
 
 footer {
   display: none;
